@@ -24,7 +24,7 @@ Node* Reverse(Node *a)
 	return p;
 }
 
-bool IsPalidrome(Node *l)
+bool IsPalidrome1(Node *l)
 {
 	if (l == NULL)
 		return false;
@@ -57,6 +57,76 @@ bool IsPalidrome(Node *l)
 	return isPali;
 }
 
+
+
+bool IsPalindrome(Node *head, Node *middle, Node *&mirror, bool isEven)
+{
+	if ((!isEven && head->next->next == middle) || (isEven && head->next == middle))
+	{
+		mirror = middle;
+		return head->value == middle->value;
+	}
+	bool ret = IsPalindrome(head->next, middle, mirror, isEven);
+	if (ret == false)
+		return false;
+
+	mirror = mirror->next;
+	return head->value == mirror->value;
+}
+
+bool IsPalindrome(Node *head)
+{
+	if (head == NULL)
+		return false;
+	Node *first = head, *second = head;
+	while (second != NULL && second->next != NULL)
+	{
+		first = first->next;
+		second = second->next->next;
+	}
+	bool isEven = true;
+	if (second != NULL)
+	{
+		first = first->next;
+		isEven = false;
+	}
+
+	if (first == NULL)
+		return true;
+
+	Node *mirror = NULL;
+	return IsPalindrome(head, first, mirror, isEven);
+
+}
+
+bool IsPalindrome(Node *head, Node* &mirror, int length)
+{
+	if (head == NULL || length == 0)
+	{
+		mirror = NULL;
+		return true;
+	}
+	else if (length == 1)
+	{
+		mirror = head->next;
+		return true;
+	}
+	else if (length == 2)
+	{
+		mirror = head->next->next;
+		return head->value == head->next->value;
+	}
+
+	bool ret = IsPalindrome(head->next, mirror, length - 2);
+	if (ret == false)
+		return false;
+	ret = head->value == mirror->value;
+
+	mirror = mirror->next;
+	return ret;
+}
+
+
 int _tmain(int argc, _TCHAR* argv[])
 {
 	Node *head, *tail;
@@ -70,7 +140,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		}
 		else
 		{
-			int value = i > 6 ? 11 - i : i;
+			int value = i > 5 ? 11 - i : i;
 			tail->next = new Node(value, NULL);
 			tail = tail->next;
 		}
@@ -84,8 +154,9 @@ int _tmain(int argc, _TCHAR* argv[])
 		temp = temp->next;
 	}
 
-
-	printf("\nIs Palidrome: %s\n", IsPalidrome(head) ? "true" : "false");
+	// Third version testing
+	Node *mirror = NULL;
+	printf("\nIs Palidrome: %s\n", IsPalindrome(head, mirror, 12) ? "true" : "false");
 
 	temp = head;
 	while (temp != NULL)

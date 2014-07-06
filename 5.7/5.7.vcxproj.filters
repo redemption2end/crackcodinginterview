@@ -24,30 +24,12 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TripleStack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TripleStack1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StackWithMin.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="3.1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TripleStack.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TripleStack1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="StackWithMin.cpp">
+    <ClCompile Include="5.7.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -6,12 +6,12 @@
 
 bool IsConnected(Node *t, Node *s)
 {
-	if (!t->visited)
-	{
-		t->visited = true;
-		if (t == s)
-			return true;
-	}
+
+	if (t == s)
+		return true;
+
+	t->visited = true;
+
 
 	for (list<Node*>::iterator iter = t->adjacent->begin(); iter != t->adjacent->end(); ++iter)
 	{
@@ -37,7 +37,8 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	a->adjacent->push_back(b);
 	a->adjacent->push_back(c);
-	a->adjacent->push_back(d);
+	//a->adjacent->push_back(d);
+	d->adjacent->push_back(a);
 
 	c->adjacent->push_back(d);
 
